@@ -1,1 +1,3 @@
 *.npy
+*.log
+test_data_generate.py
