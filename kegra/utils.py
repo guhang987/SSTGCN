@@ -59,7 +59,7 @@ def load_data_bantian(path="data/cora/", dataset="cora"):
         [0,0,0,1,0,0,1,0],
         [0,0,0,1,0,1,1,0],
         [0,0,0,1,0,0,1,0],
-        [0,0,0,1,0,0,1,1],))
+        [0,0,0,1,0,0,1,1],)
     features = sp.csr_matrix(features, dtype=np.float32)
     edges = np.array([[0,1],[1,2],[1,3],[2,4],[3,4],[4,5]],dtype='int32')
     edges2 = np.array([[0,2],[0,3],[1,4],[2,5],[3,5]],dtype='int32')
@@ -70,6 +70,26 @@ def load_data_bantian(path="data/cora/", dataset="cora"):
     adj3 = get_adj(edges=edges3,labels=labels)
     print('Dataset has {} nodes, {} edges, {} features.'.format(adj.shape[0], edges.shape[0], features.shape[1]))
     return features.todense(), adj,adj2,adj3,labels
+
+def load_data_gcn(path="data/cora/", dataset="cora"):
+    """Load citation network dataset (cora only for now)"""
+    print('Loading {} dataset...'.format(dataset))
+    features = np.array(([0,0,0,1,0,1,1,0],
+        [0,0,0,1,0,0,1,0],
+        [0,0,0,1,0,0,1,0],
+        [0,0,0,1,0,1,1,0],
+        [0,0,0,1,0,0,1,0],
+        [0,0,0,1,0,0,1,1],)
+    features = sp.csr_matrix(features, dtype=np.float32)
+    edges = np.array([[0,1],[1,2],[1,3],[2,4],[3,4],[4,5]],dtype='int32')
+   
+    labels = np.zeros((6,1), dtype = 'int32')       
+    adj = get_adj(edges=edges,labels=labels)
+
+    print('Dataset has {} nodes, {} edges, {} features.'.format(adj.shape[0], edges.shape[0], features.shape[1]))
+    return features.todense(), adj, labels
+
+
 
 def load_data_(path="data/cora/", dataset="cora"):
     """Load citation network dataset (cora only for now)"""
