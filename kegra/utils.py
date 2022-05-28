@@ -218,3 +218,18 @@ def sparse_to_tuple(sparse_mx):
 
 
 
+def slice(x,index):
+    return x[:,index]
+def euclidean_distance(vects):
+    x, y = vects
+    sum_square = K.sum(K.square(x - y), axis=1, keepdims=True)
+    print("sum_squart,",sum_square)
+    return K.sqrt(K.maximum(sum_square, K.epsilon()))
+
+def normalization(data):
+    _range = np.max(data) - np.min(data)
+    return (data - np.min(data)) / _range
+
+def get_static_feature(road_id):
+    x = static_features.tolist()[road_id]
+    return list(normalization(x))+POI[road_id]
