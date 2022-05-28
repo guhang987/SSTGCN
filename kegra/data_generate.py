@@ -73,22 +73,22 @@ def getCrossFlow(df_cross, start_time, end_time):
     data_S = np.array(df_cross[start:end]['South'])
     data_E = np.array(df_cross[start:end]['East'])
     return np.stack([data_N, data_W, data_S, data_E],axis=1)
-def getSample(roads, start_time, end_time):
-    sample = []
-    data_path = '/home/user1/GCN_ori/smartTraffic/traffic_data/cross/{}.csv'
-    for road in roads:
-        df = pd.read_csv(data_path.format(road))
-        df.fillna(0,inplace = True)
-        df = df.reset_index(drop=True)
-        data = getCrossFlow(df,start_time, end_time)
-        sample.append(data)
-    return np.array(sample)
+# def getSample(roads, start_time, end_time):
+#     sample = []
+#     data_path = '../smartTraffic/traffic_data/cross/{}.csv'
+#     for road in roads:
+#         df = pd.read_csv(data_path.format(road))
+#         df.fillna(0,inplace = True)
+#         df = df.reset_index(drop=True)
+#         data = getCrossFlow(df,start_time, end_time)
+#         sample.append(data)
+#     return np.array(sample)
 
 
 
 def getSample_for_road(road, start_time, end_time):
     sample = []
-    data_path = '/home/user1/GCN_ori/smartTraffic/traffic_data/cross/{}.csv'
+    data_path = '../smartTraffic/traffic_data/cross/{}.csv'
  
     df = pd.read_csv(data_path.format(road))
     df.fillna(0,inplace = True)

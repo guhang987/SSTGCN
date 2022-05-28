@@ -54,7 +54,12 @@ def load_data(path="data/cora/", dataset="cora"):
 def load_data_bantian(path="data/cora/", dataset="cora"):
     """Load citation network dataset (cora only for now)"""
     print('Loading {} dataset...'.format(dataset))
-    features = np.load("{}features.npy".format(path))[-6:]
+    features = np.array(([0,0,0,1,0,1,1,0],
+        [0,0,0,1,0,0,1,0],
+        [0,0,0,1,0,0,1,0],
+        [0,0,0,1,0,1,1,0],
+        [0,0,0,1,0,0,1,0],
+        [0,0,0,1,0,0,1,1],))
     features = sp.csr_matrix(features, dtype=np.float32)
     edges = np.array([[0,1],[1,2],[1,3],[2,4],[3,4],[4,5]],dtype='int32')
     edges2 = np.array([[0,2],[0,3],[1,4],[2,5],[3,5]],dtype='int32')
