@@ -1,7 +1,6 @@
-Deep Learning on Graphs with Keras
+Keras-based implementation of SSTGCN.
 ====
 
-Keras-based implementation of SSTGCN.
 
 Abstract
 ------------
@@ -25,6 +24,8 @@ Dependencies
 
 Usage
 -----
+
+```python data_generate.py```
 
 ```python train.py```
 
