@@ -54,12 +54,13 @@ def load_data(path="data/cora/", dataset="cora"):
 def load_data_bantian(path="data/cora/", dataset="cora"):
     """Load citation network dataset (cora only for now)"""
     print('Loading {} dataset...'.format(dataset))
-    features = np.array(([0,0,0,1,0,1,1,0],
+    features = np.array([[0,0,0,1,0,1,1,0],
         [0,0,0,1,0,0,1,0],
         [0,0,0,1,0,0,1,0],
         [0,0,0,1,0,1,1,0],
         [0,0,0,1,0,0,1,0],
-        [0,0,0,1,0,0,1,1],)
+        [0,0,0,1,0,0,1,1]],dtype='int32')
+    # features = np.array([[0,1],[1,2],[1,3],[2,4],[3,4],[4,5]],dtype='int32')
     features = sp.csr_matrix(features, dtype=np.float32)
     edges = np.array([[0,1],[1,2],[1,3],[2,4],[3,4],[4,5]],dtype='int32')
     edges2 = np.array([[0,2],[0,3],[1,4],[2,5],[3,5]],dtype='int32')
@@ -74,12 +75,12 @@ def load_data_bantian(path="data/cora/", dataset="cora"):
 def load_data_gcn(path="data/cora/", dataset="cora"):
     """Load citation network dataset (cora only for now)"""
     print('Loading {} dataset...'.format(dataset))
-    features = np.array(([0,0,0,1,0,1,1,0],
+    features = np.array([[0,0,0,1,0,1,1,0],
         [0,0,0,1,0,0,1,0],
         [0,0,0,1,0,0,1,0],
         [0,0,0,1,0,1,1,0],
         [0,0,0,1,0,0,1,0],
-        [0,0,0,1,0,0,1,1],)
+        [0,0,0,1,0,0,1,1],])
     features = sp.csr_matrix(features, dtype=np.float32)
     edges = np.array([[0,1],[1,2],[1,3],[2,4],[3,4],[4,5]],dtype='int32')
    
@@ -218,18 +219,4 @@ def sparse_to_tuple(sparse_mx):
 
 
 
-def slice(x,index):
-    return x[:,index]
-def euclidean_distance(vects):
-    x, y = vects
-    sum_square = K.sum(K.square(x - y), axis=1, keepdims=True)
-    print("sum_squart,",sum_square)
-    return K.sqrt(K.maximum(sum_square, K.epsilon()))
 
-def normalization(data):
-    _range = np.max(data) - np.min(data)
-    return (data - np.min(data)) / _range
-
-def get_static_feature(road_id):
-    x = static_features.tolist()[road_id]
-    return list(normalization(x))+POI[road_id]
